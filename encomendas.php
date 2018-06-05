@@ -71,15 +71,168 @@
                     </table>
                 </div>
             </div>
-        </div>   
-
-
-        
-
-
-       
-
+        </div>    
     </div>
+
+<!-- MODAL -->
+<div class="ui large modal modal-um">
+                <div class="header">
+                    Cadastrar Encomenda [1/3]
+                </div>
+                <div class="content">
+                    <form class="ui form" action="Repositorios/usuarioRepositorio.php" method="POST">
+                        <input type="hidden" value="" id="codigo" name="codigo">
+                        <h4 class="ui dividing header">Endereço Origem</h4>
+                        <div class="field">
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Cep</label >
+                                    <input type="text" name="cep1" id="cep" placeholder="CEP">
+                                </div>
+                                <div class="field">
+                                    <label>Logradouro</label>
+                                    <input type="text" name="logradouro" id="rua" placeholder="Logradouro">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Bairro</label >
+                                    <input type="text" name="bairro" id="bairro" placeholder="Bairro">
+                                </div>
+                                <div class="field">
+                                    <label>Cidade</label>
+                                    <input type="text" name="Cidade" id="cidade" placeholder="Cidade">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="three fields">
+                                <div class="field">
+                                    <label>Estado</label >
+                                    <input type="text" name="Estado" id="uf" placeholder="Estado">
+                                </div>
+                                <div class="field">
+                                    <label>Numero</label >
+                                    <input type="text" name="numero" id="numero" placeholder="Numero">
+                                </div>
+                                <div class="field">
+                                    <label>Complemento</label >
+                                    <input type="text" name="complemento" id="complemento" placeholder="Complemento">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="actions">
+                            <div class="ui negative button">
+                                Cancelar
+                            </div>
+                            <button type="button" class="ui right labeled green icon button proceed1">
+                            <i class="right arrow icon"></i>
+                                Continuar
+                            </button>
+                          </div>
+                    </form>
+                </div> 
+            </div>
+
+                    <!-- modal 2 -->
+                    <div class="ui large modal modal-dois">
+                <div class="header">
+                    Cadastrar Encomenda [2/3]
+                </div>
+                <div class="content">
+                    <form class="ui form" action="Repositorios/usuarioRepositorio.php" method="POST">
+                        <input type="hidden" value="" id="codigo" name="codigo">
+                        <h4 class="ui dividing header">Endereço Origem</h4>
+                        <div class="field">
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Cep</label >
+                                    <input type="text" name="cep1" id="cep2" placeholder="CEP">
+                                </div>
+                                <div class="field">
+                                    <label>Logradouro</label>
+                                    <input type="text" name="logradouro" id="rua2" placeholder="Logradouro">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Bairro</label >
+                                    <input type="text" name="bairro" id="bairro2" placeholder="Bairro">
+                                </div>
+                                <div class="field">
+                                    <label>Cidade</label>
+                                    <input type="text" name="Cidade" id="cidade2" placeholder="Cidade">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="three fields">
+                                <div class="field">
+                                    <label>Estado</label >
+                                    <input type="text" name="Estado" id="uf2" placeholder="Estado">
+                                </div>
+                                <div class="field">
+                                    <label>Numero</label >
+                                    <input type="text" name="numero" id="numero2" placeholder="Numero">
+                                </div>
+                                <div class="field">
+                                    <label>Complemento</label >
+                                    <input type="text" name="complemento" id="complemento2" placeholder="Complemento">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="ui negative button previous1">
+                                Voltar
+                            </div>
+                            <button type="button" class="ui right labeled green icon button proceed2">
+                            <i class="right arrow icon"></i>
+                                Continuar
+                            </button>
+                          </div>
+                    </form>
+                </div> 
+            </div>
+
+                                <!-- modal 3 -->
+            <div class="ui large modal modal-tres">
+                <div class="header">
+                    Cadastrar Encomenda [3/3]
+                </div>
+                <div class="content">
+                    <form class="ui form" action="Repositorios/usuarioRepositorio.php" method="POST">
+                        <input type="hidden" value="" id="codigo" name="codigo">
+                        <h4 class="ui dividing header">Informações da encomenda</h4>
+                        <div class="field">
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>CPF</label >
+                                    <input type="text" name="cpf" id="cpf" placeholder="CEP">
+                                </div>
+                                <div class="field">
+                                    <label>Prazo</label>
+                                    <input type="text" id="prazo" placeholder="Logradouro">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="ui negative button previous1">
+                                Voltar
+                            </div>
+                            <button type="button" id="finalizar" class="ui right labeled green icon button proceed2">
+                            <i class="right arrow icon"></i>
+                                Finalizar
+                            </button>
+                          </div>
+                    </form>
+                </div> 
+            </div>
 
 
 <?php include("layout/scripts.html"); ?>

@@ -44,7 +44,7 @@
                                                     <i class='edit icon'></i>
                                                 </div>
                                             </div>
-                                            <div class='ui vertical animated button excluir' tabindex='0'>
+                                            <div class='ui vertical animated button excluir' id='".$row["Codigo"]."' tabindex='0'>
                                                 <div class='hidden content '>Excluir</div>
                                                 <div class='visible content'>
                                                     <i class='trash icon'></i>
@@ -75,15 +75,18 @@
     <div class="content">
       <p>Tem certeza que deseja excluir o usuário ?</p>
     </div>
-    <div class="actions">
-      <div class="ui negative button">
-        Não
-      </div>
-      <div class="ui positive right labeled icon button confirm">
-        Sim
-        <i class="checkmark confirm icon"></i>
-      </div>
-    </div>
+    <form action="Repositorios/usuarioRepositorio.php" method="POST"> 
+        <input type="hidden" value="" id="codigoD" name="codigo">
+        <div class="actions">
+        <div class="ui negative button">
+            Não
+        </div>
+        <button type="submit" class="ui right labeled green icon button">
+            Sim
+            <i class="checkmark confirm icon"></i>
+        </button>
+        </div>
+    </form>
   </div>
 
     <!-- modal adicionar -->
@@ -137,29 +140,3 @@
 <script src="js/usuarios.js" ></script>
 </body>
 </html>
-<?php
-  function inserirDados(){
-      echo $_POST['codigo'];
-  }
-//       if($_POST['codigo']== ""){
-//             $sql = "INSERT INTO `usuario`(`Cpf`, `Email`, `Nome`, `Senha`) VALUES
-//             ('".$_POST['cpf']."','". $_POST['email']."','".$_POST['nome'] ."','". $_POST['senha']."')";
-            
-//             if (mysqli_query($conn, $sql)) {
-//                 echo "New record created successfully";
-//             } else {
-//                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-//             }
-//         }
-//         else
-//             $sql = "DELETE FROM `usuario` WHERE codigo = ".$_POST['codigo'];  
-
-//             if (mysqli_query($conn, $sql)) {
-//                 echo "New record created successfully";
-//             } else {
-//                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-//             }  
-//         echo $_POST['codigo'];
-     
-//   }
-?>
