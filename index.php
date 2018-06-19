@@ -1,3 +1,4 @@
+<?php include("layout/validacao.php"); ?>
 <?php include("Repositorios/repositorioBase.php") ?>
 <!DOCTYPE html>
 <html lang="pt-br">

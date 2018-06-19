@@ -1,76 +1,106 @@
-$("#encomendas" ).addClass( "active" );
-
+$("#encomendas").addClass("active");
 
 // Gerenciamento dos modais
-$(".adicionar").click(function(){
+$(".adicionar").click(function () {
     $('.modal-um').modal('show');
 })
 
-$(".proceed1").click(function(){
+$(".proceed1").click(function () {
     $('.modal-um').modal('hide');
     $('.modal-dois').modal('show');
 })
-  
-$(".proceed2").click(function(){
+
+$(".proceed2").click(function () {
     $('.modal-dois').modal('hide');
     $('.modal-tres').modal('show');
 })
 
-$(".previous1").click(function(){
+$(".previous1").click(function () {
     $('.modal-dois').modal('hide');
     $(".modal-um").modal('show');
 })
-$(".previous2").click(function(){
+$(".previous2").click(function () {
     $('.modal-tres').modal('hide');
-    $('.modal-dois').modal('show');
+    $(".modal-dois").modal('show');
 })
 
-$("#finalizar").click(function(){
+$(".share").click(function(){
+    var id = $(this).attr('id');
+    var link = ("http://localhost:8080/4lp/Rastreio.php?codigo=" + id );
+    
+
+    $('.shareModal').modal('show');
+    $('.shareInput').val(link);
+});
+$('.shareInput').click(function(){
+    $('.shareInput').select();
+    document.execCommand('copy');
+    $('.shareModal').modal('hide');
+});
+
+$('.update').click(function(){
+    $('.updateModal').modal('show');
+});
 
 
-    var rua = $("#rua").val();
-    var bairro1 = $("#bairro").val();
-   var cidade1=$("#cidade").val();
-   var estado1=$("#uf").val();
-   var pais="Brasil";
-   var rua2=$("#rua2").val();
-   var bairro2=$("#bairro2").val();
-   var cidade2=$("#cidade2").val();
-   var estado2=$("#uf2").val();
-   var numero2=$("#numero2").val();
-   var complemento2=$("#complemento2").val();
-   var cpf=$("#cpf").val();
-   var prazo=$("#prazo").val();
+$("#finalizar").click(function () {
+    $(".modal-tres").modal('hide');
+    //info modal 1
+    bairro1 = $("#bairro").val();
+    cep = $("#cep").val();
+    cidade1 = $("#cidade").val();
+    complemento = $("#complemento").val();
+    estado1 = $("#uf").val();
+    rua = $("#rua").val();
+    numero = $("#numero").val();
+    
+    //info modal 2
+    bairro2 = $("#bairro2").val();
+    cep2 = $("#cep2").val();
+    cidade2 = $("#cidade2").val();
+    complemento2 = $("#complemento2").val();
+    estado2 = $("#uf2").val();
+    rua2 = $("#rua2").val();
+    numero2 = $("#numero2").val();
+   
+    
+    //info modal 3
+    var cpf = $("#cpf").val();
+    var prazo = $("#prazo").val();
 
 
 
-    var url="teste.php";
-    var encomenda =  {
-        "logradouro1":rua,
-        "bairro1":bairro1,
-        "cidade1":cidade1,
-        "estado1":estado1,
-        "pais":"Brasil",
-        "logradouro2":rua2,
-        "bairro2":bairro2,
-        "cidade2":cidade2,
-        "estado2":estado2,
-        "numero2":numero2,
-        "complemento2":complemento2,
-        "cpf":cpf,
-        "prazo":prazo
+    var url = "teste.php";
+    var encomenda = {
+        "bairro1": bairro1,
+        "bairro2": bairro2,
+        "cep": cep,
+        "cep2": cep2,
+        "cidade1": cidade1,
+        "cidade2": cidade2,
+        "complemento": complemento,
+        "complemento2": complemento2,
+        "cpf": cpf,
+        "estado1": estado1,
+        "estado2": estado2,
+        "logradouro1": rua,
+        "logradouro2": rua2,
+        "pais": "Brasil",
+        "numero": numero,
+        "numero2": numero2,
+        "prazo": prazo
     };
-
     console.log(encomenda);
-    var obj =JSON.stringify(encomenda);
     $.ajax({
-      type: 'post',
-      url: url,
-      data: obj//,
-    //   dataType:"t"
-    });
-    $.post(url, function(result) {
-console.log(result);
+        url: "/4lp/Repositorios/encomendaRepositorio.php",
+        type: "POST",
+        data: { "enco": JSON.stringify(encomenda) }
+    }).done(function (resposta) {
+        console.log(resposta);
+        window.location.reload();
+    }).fail(function (jqXHR, textStatus, error) {
+        console.log("Request failed: " + textStatus + " - " + error);
+        window.location.reload();
     });
 });
 
@@ -79,90 +109,90 @@ console.log(result);
 
 
 // Busca de CEP
-$(document).ready(function() {
+$(document).ready(function () {
 
     var rua;
     var bairro;
     var cidade;
     var uf;
 
-    function buscaCep(rua,bairro,cidade,uf,cep){
-        
-            $(rua).val("...");
-            $(bairro).val("...");
-            $(cidade).val("...");
-            $(uf).val("...");
-            //Consulta o webservice viacep.com.br/
-            $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+    function buscaCep(rua, bairro, cidade, uf, cep) {
 
-                if (!("erro" in dados)) {
-                    //Atualiza os campos com os valores da consulta.
-                    $(rua).val(dados.logradouro);
-                    $(bairro).val(dados.bairro);
-                    $(cidade).val(dados.localidade);
-                    $(uf).val(dados.uf);
-                } //end if.
-                else {
-                    //CEP pesquisado não foi encontrado.
-                    limpa_formulário_cep();
-                    alert("CEP não encontrado.");
-                }
-            });
+        $(rua).val("...");
+        $(bairro).val("...");
+        $(cidade).val("...");
+        $(uf).val("...");
+        //Consulta o webservice viacep.com.br/
+        $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+            if (!("erro" in dados)) {
+                //Atualiza os campos com os valores da consulta.
+                $(rua).val(dados.logradouro);
+                $(bairro).val(dados.bairro);
+                $(cidade).val(dados.localidade);
+                $(uf).val(dados.uf);
+            } //end if.
+            else {
+                //CEP pesquisado não foi encontrado.
+                limpa_formulario_cep();
+                alert("CEP não encontrado.");
+            }
+        });
 
     }
 
 
-    function limpa_formulário_cep() {
+    function limpa_formulario_cep() {
         // Limpa valores do formulário de cep.
         $("#rua").val("");
         $("#bairro").val("");
         $("#cidade").val("");
         $("#uf").val("");
     }
-    
+
     //Quando o campo cep perde o foco.
-    $("#cep").blur(function() {
+    $("#cep").blur(function () {
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
         //Verifica se campo cep possui valor informado.
         if (cep != "") {
-            
+
             //Expressão regular para validar o CEP.
             var validacep = /^[0-9]{8}$/;
-            
+
             //Valida o formato do CEP.
-            if(validacep.test(cep)) {
-                
+            if (validacep.test(cep)) {
+
                 //Preenche os campos com "..." enquanto consulta webservice.
-                buscaCep($("#rua"),$("#bairro"),$("#cidade"),$("#uf"),cep);
-                
+                buscaCep($("#rua"), $("#bairro"), $("#cidade"), $("#uf"), cep);
+
             } //end if.
             else {
                 //cep é inválido.
-                limpa_formulário_cep();
+                limpa_formulario_cep();
                 alert("Formato de CEP inválido.");
             }
         } //end if.
         else {
             //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
+            //limpa_formulario_cep();
         }
     });
-    $("#cep2").blur(function() {
+    $("#cep2").blur(function () {
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
         //Verifica se campo cep possui valor informado.
         if (cep != "") {
-            
+
             //Expressão regular para validar o CEP.
             var validacep = /^[0-9]{8}$/;
-            
+
             //Valida o formato do CEP.
-            if(validacep.test(cep)) {
-                
+            if (validacep.test(cep)) {
+
                 //Preenche os campos com "..." enquanto consulta webservice.
-                buscaCep($("#rua2"),$("#bairro2"),$("#cidade2"),$("#uf2"),cep);
-                
+                buscaCep($("#rua2"), $("#bairro2"), $("#cidade2"), $("#uf2"), cep);
+
             } //end if.
             else {
                 //cep é inválido.
@@ -172,7 +202,7 @@ $(document).ready(function() {
         } //end if.
         else {
             //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
+            //limpa_formulario_cep();
         }
     });
 });
