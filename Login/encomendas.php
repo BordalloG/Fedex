@@ -259,14 +259,14 @@
                                 <div class="field">
                                     <label>Fase:</label>
                                     <!-- <div class="ui fluid search selection dropdown active visible"> -->
-                                        <select class="SelectFase">
+                                        <select class='fase'>
                                     <?php
                                 $sql = "SELECT * FROM fase";
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     // output data of each row
                                     while($row = $result->fetch_assoc()) {
-                                        echo "<option value='".$row["Codigo"]."'>";
+                                        echo "<option value=".$row["Codigo"].">";
                                         echo $row["Descricao"];
                                         echo "</option>";
                                     }
@@ -278,16 +278,15 @@
                                 </select>
                                 <!-- </div> -->
                                 </div>
-                                
                             </div>
                         </div>
                         <div class="actions">
-                            <div class="ui negative button">
+                            <div class="ui negative button ">
                                 Voltar
                             </div>
-                            <button type="button" id="finalizar" class="ui right labeled green icon button alterarFase">
+                            <button type="button" id="mudarFase" class="ui right labeled green icon button">
                             <i class="right arrow icon"></i>
-                                Alterar Fase
+                                Finalizar
                             </button>
                           </div>
                     </form>

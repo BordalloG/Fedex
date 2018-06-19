@@ -38,31 +38,32 @@ $('.shareInput').click(function(){
     $('.shareModal').modal('hide');
 });
 
-var ooooohYeahThisIsAnEncomendaCodeBaby;
+var ooooohYeahThisIsAnIdBaby;
 
 $('.update').click(function(){
     $('.updateModal').modal('show');
-    ooooohYeahThisIsAnEncomendaCodeBaby = $(this).attr('id');
+    ooooohYeahThisIsAnIdBaby= $(this).attr('id');
 });
 
-$('.alterarFase').click(function (){
-    var codFase = $('.SelectFase').val();
-    var info = {
-        "codFase": codFase,
-        "codEnco":ooooohYeahThisIsAnEncomendaCodeBaby
+
+$('#mudarFase').click(function(){
+    var cod= $('.fase').val();
+    
+    var fase={
+        "enco":ooooohYeahThisIsAnIdBaby,
+        "Cfase":cod
     }
+
 
     $.ajax({
         url: "/4lp/teste.php",
         type: "POST",
-        data: { "info": JSON.stringify(info) }
+        data: { "enco": JSON.stringify(fase) }
     }).done(function (resposta) {
         console.log(resposta);
     }).fail(function (jqXHR, textStatus, error) {
         console.log("Request failed: " + textStatus + " - " + error);
     });
-
-    
 });
 
 
